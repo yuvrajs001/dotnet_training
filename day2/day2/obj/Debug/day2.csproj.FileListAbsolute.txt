@@ -1,0 +1,7 @@
+D:\Yuvraj_repo\day2\day2\bin\Debug\day2.exe.config
+D:\Yuvraj_repo\day2\day2\bin\Debug\day2.exe
+D:\Yuvraj_repo\day2\day2\bin\Debug\day2.pdb
+D:\Yuvraj_repo\day2\day2\obj\Debug\day2.csproj.AssemblyReference.cache
+D:\Yuvraj_repo\day2\day2\obj\Debug\day2.csproj.CoreCompileInputs.cache
+D:\Yuvraj_repo\day2\day2\obj\Debug\day2.exe
+D:\Yuvraj_repo\day2\day2\obj\Debug\day2.pdb
