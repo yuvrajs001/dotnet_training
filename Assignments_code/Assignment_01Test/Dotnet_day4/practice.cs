@@ -16,24 +16,24 @@ namespace Dotnet_day4
 
             //write a C# Sharp program to accept two integers and check whether they are equal or not. 
 
-            //EqualOrNot eq = new EqualOrNot();
-            //eq.CalculateEqual();
+            EqualOrNot eq = new EqualOrNot();
+            eq.CalculateEqual();
 
             ////Checking the number is postive or negative calling the class
-            //PositiveNegative pn = new PositiveNegative();
-            //pn.CalculatPosNeg();
+            PositiveNegative pn = new PositiveNegative();
+            pn.CalculatPosNeg();
 
 
 
             //// checking the number operatin 
 
-            //MathOper mo = new MathOper();
-            //mo.CalculateOper();
+            MathOper mo = new MathOper();
+            mo.CalculateOper();
 
             //cheking the day with day no.
 
-            //DaysTeller dt = new DaysTeller();
-            //dt.ExactDay();
+            DaysTeller dt = new DaysTeller();
+            dt.ExactDay();
 
 
 
@@ -41,8 +41,8 @@ namespace Dotnet_day4
 
 
 
-            //TableProg tp = new TableProg();
-            //tp.table();
+            TableProg tp = new TableProg();
+            tp.table();
 
 
 
@@ -50,8 +50,8 @@ namespace Dotnet_day4
             // max and min  and average
 
 
-            //ArrayMaxcs am = new ArrayMaxcs();
-            //am.MaXmin();
+            ArrayMaxcs am = new ArrayMaxcs();
+            am.MaXmin();
 
 
 
@@ -60,8 +60,8 @@ namespace Dotnet_day4
             ps.strinProg();
 
 
-            //length ls = new length();
-            //ls.lengthCal();
+            length ls = new length();
+            ls.lengthCal();
 
 
         }

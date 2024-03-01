@@ -1,9 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\dotnet_day3",
-    "\\dotnet_day3\\dotnet_day3"
+    "\\Assignments_code",
+    "\\Assignments_code\\Assignment_02Test",
+    "\\Assignments_code\\Assignment_02Test\\Assignment_02Test"
   ],
-  "SelectedNode": "\\dotnet_day3",
+  "SelectedNode": "\\Assignments_code\\Assignment_02Test\\Assignment_02Test\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
