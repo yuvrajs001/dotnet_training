@@ -1,0 +1,7 @@
+D:\Yuvraj_repo\Assignments_code\Assignment_01Test\Assignment_01Test\obj\Debug\Assignment_01Test.csproj.AssemblyReference.cache
+D:\Yuvraj_repo\Assignments_code\Assignment_01Test\Assignment_01Test\obj\Debug\Assignment_01Test.csproj.CoreCompileInputs.cache
+D:\Yuvraj_repo\Assignments_code\Assignment_01Test\Assignment_01Test\bin\Debug\Assignment_01Test.exe.config
+D:\Yuvraj_repo\Assignments_code\Assignment_01Test\Assignment_01Test\bin\Debug\Assignment_01Test.exe
+D:\Yuvraj_repo\Assignments_code\Assignment_01Test\Assignment_01Test\bin\Debug\Assignment_01Test.pdb
+D:\Yuvraj_repo\Assignments_code\Assignment_01Test\Assignment_01Test\obj\Debug\Assignment_01Test.exe
+D:\Yuvraj_repo\Assignments_code\Assignment_01Test\Assignment_01Test\obj\Debug\Assignment_01Test.pdb
