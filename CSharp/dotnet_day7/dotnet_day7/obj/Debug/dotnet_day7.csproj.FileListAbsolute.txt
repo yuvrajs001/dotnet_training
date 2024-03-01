@@ -1,0 +1,7 @@
+D:\Yuvraj_repo\dotnet_day7\dotnet_day7\bin\Debug\dotnet_day7.exe.config
+D:\Yuvraj_repo\dotnet_day7\dotnet_day7\bin\Debug\dotnet_day7.exe
+D:\Yuvraj_repo\dotnet_day7\dotnet_day7\bin\Debug\dotnet_day7.pdb
+D:\Yuvraj_repo\dotnet_day7\dotnet_day7\obj\Debug\dotnet_day7.csproj.AssemblyReference.cache
+D:\Yuvraj_repo\dotnet_day7\dotnet_day7\obj\Debug\dotnet_day7.csproj.CoreCompileInputs.cache
+D:\Yuvraj_repo\dotnet_day7\dotnet_day7\obj\Debug\dotnet_day7.exe
+D:\Yuvraj_repo\dotnet_day7\dotnet_day7\obj\Debug\dotnet_day7.pdb
