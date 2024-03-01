@@ -1,7 +1,0 @@
-D:\Yuvraj_repo\Dotnet_day4\Dotnet_day4\bin\Debug\Dotnet_day4.exe.config
-D:\Yuvraj_repo\Dotnet_day4\Dotnet_day4\bin\Debug\Dotnet_day4.exe
-D:\Yuvraj_repo\Dotnet_day4\Dotnet_day4\bin\Debug\Dotnet_day4.pdb
-D:\Yuvraj_repo\Dotnet_day4\Dotnet_day4\obj\Debug\Dotnet_day4.csproj.AssemblyReference.cache
-D:\Yuvraj_repo\Dotnet_day4\Dotnet_day4\obj\Debug\Dotnet_day4.csproj.CoreCompileInputs.cache
-D:\Yuvraj_repo\Dotnet_day4\Dotnet_day4\obj\Debug\Dotnet_day4.exe
-D:\Yuvraj_repo\Dotnet_day4\Dotnet_day4\obj\Debug\Dotnet_day4.pdb
