@@ -1,0 +1,7 @@
+D:\Yuvraj_repo\Assignments_code\MainAssignment_02\Main_Assignmet02\Main_Assignmet02\bin\Debug\Main_Assignmet02.exe.config
+D:\Yuvraj_repo\Assignments_code\MainAssignment_02\Main_Assignmet02\Main_Assignmet02\bin\Debug\Main_Assignmet02.exe
+D:\Yuvraj_repo\Assignments_code\MainAssignment_02\Main_Assignmet02\Main_Assignmet02\bin\Debug\Main_Assignmet02.pdb
+D:\Yuvraj_repo\Assignments_code\MainAssignment_02\Main_Assignmet02\Main_Assignmet02\obj\Debug\Main_Assignmet02.csproj.AssemblyReference.cache
+D:\Yuvraj_repo\Assignments_code\MainAssignment_02\Main_Assignmet02\Main_Assignmet02\obj\Debug\Main_Assignmet02.csproj.CoreCompileInputs.cache
+D:\Yuvraj_repo\Assignments_code\MainAssignment_02\Main_Assignmet02\Main_Assignmet02\obj\Debug\Main_Assignmet02.exe
+D:\Yuvraj_repo\Assignments_code\MainAssignment_02\Main_Assignmet02\Main_Assignmet02\obj\Debug\Main_Assignmet02.pdb
