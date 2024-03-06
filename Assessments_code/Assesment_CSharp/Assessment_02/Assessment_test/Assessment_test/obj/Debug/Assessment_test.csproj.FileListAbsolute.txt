@@ -1,0 +1,2 @@
+D:\Yuvraj_repo\Assessments_code\Assesment_CSharp\Assessment_02\Assessment_test\Assessment_test\obj\Debug\Assessment_test.csproj.AssemblyReference.cache
+D:\Yuvraj_repo\Assessments_code\Assesment_CSharp\Assessment_02\Assessment_test\Assessment_test\obj\Debug\Assessment_test.csproj.CoreCompileInputs.cache
