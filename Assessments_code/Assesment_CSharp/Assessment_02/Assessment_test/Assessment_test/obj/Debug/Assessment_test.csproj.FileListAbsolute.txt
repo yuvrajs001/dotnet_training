@@ -1,2 +1,7 @@
 D:\Yuvraj_repo\Assessments_code\Assesment_CSharp\Assessment_02\Assessment_test\Assessment_test\obj\Debug\Assessment_test.csproj.AssemblyReference.cache
 D:\Yuvraj_repo\Assessments_code\Assesment_CSharp\Assessment_02\Assessment_test\Assessment_test\obj\Debug\Assessment_test.csproj.CoreCompileInputs.cache
+D:\Yuvraj_repo\Assessments_code\Assesment_CSharp\Assessment_02\Assessment_test\Assessment_test\bin\Debug\Assessment_test.exe.config
+D:\Yuvraj_repo\Assessments_code\Assesment_CSharp\Assessment_02\Assessment_test\Assessment_test\bin\Debug\Assessment_test.exe
+D:\Yuvraj_repo\Assessments_code\Assesment_CSharp\Assessment_02\Assessment_test\Assessment_test\bin\Debug\Assessment_test.pdb
+D:\Yuvraj_repo\Assessments_code\Assesment_CSharp\Assessment_02\Assessment_test\Assessment_test\obj\Debug\Assessment_test.exe
+D:\Yuvraj_repo\Assessments_code\Assesment_CSharp\Assessment_02\Assessment_test\Assessment_test\obj\Debug\Assessment_test.pdb
