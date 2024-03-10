@@ -48,8 +48,6 @@ namespace Assignment_04
 
 
 
-
-
             //Words query question2
 
 

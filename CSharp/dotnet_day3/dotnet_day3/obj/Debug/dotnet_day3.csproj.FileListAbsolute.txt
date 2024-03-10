@@ -1,6 +1,0 @@
-D:\Yuvraj_repo\dotnet_day3\dotnet_day3\bin\Debug\dotnet_day3.exe.config
-D:\Yuvraj_repo\dotnet_day3\dotnet_day3\bin\Debug\dotnet_day3.exe
-D:\Yuvraj_repo\dotnet_day3\dotnet_day3\bin\Debug\dotnet_day3.pdb
-D:\Yuvraj_repo\dotnet_day3\dotnet_day3\obj\Debug\dotnet_day3.csproj.CoreCompileInputs.cache
-D:\Yuvraj_repo\dotnet_day3\dotnet_day3\obj\Debug\dotnet_day3.exe
-D:\Yuvraj_repo\dotnet_day3\dotnet_day3\obj\Debug\dotnet_day3.pdb
