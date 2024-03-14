@@ -85,7 +85,9 @@ namespace Assessment03
 
             // d. employees whose Last Name starts with S
             DisplayEmployees(employeeService.GetEmployeesByLastNameStartingWith('S'), "Details of employees whose Last Name starts with S:");
+            Console.ReadKey();
         }
+        
 
         static void DisplayEmployees(IEnumerable<Employee> employees, string message)
         {
@@ -96,6 +98,7 @@ namespace Assessment03
             }
             Console.WriteLine();
         }
+        
     }
 }
 

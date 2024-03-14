@@ -28,6 +28,7 @@ namespace Assessment03
                 {
                     Console.WriteLine("An error occurred while appending to the file. ");
                 }
+               Console.Read();
             }
         }
     }
