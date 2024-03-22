@@ -136,26 +136,4 @@ select lower(name) as name, salary from emp where salary is null;
 -----------------------------------------------------------------------------------
 -----------------students table
 
-create table student (
-    Id int primary key,
-    Register_no int,
-    Name varchar(50),
-    Age int,
-    Qualification varchar(50),
-    Mobile_no varchar(15),
-    Mail_id varchar(50),
-    location varchar(50),
-    gender char(1)
-);
-
-insert into student (Id, Register_no, Name, Age, Qualification, Mobile_no, Mail_id, location, gender)
-values 
-    (1, 2, 'sai', 22, 'B.E.', '9952836777', 'sai@gmail.com', 'Chennai', 'M'),
-    (2, 3, 'kumar', 20, 'B.SC', '7890125648', 'kumar@gmail.com', 'Madurai', 'M'),
-    (3, 4, 'selvi', 22, 'B.Tech', '8904567342', 'slevi@gmail.com', 'Salem', 'F'),
-    (4, 5, 'nisha', 25, 'M.E', '7834672310', 'nisha@gmail.com', 'Theni', 'F'),
-    (5, 6, 'sai saran', 21, 'B.A.', '7890345678', 'saran@gmail.com', 'Madurai', 'F'),
-    (6, 7, 'tom', 23, 'BCA', '8901234675', 'tom@gmail.com', 'Pune', 'M');
-
--- Write a sql server query to display the Gender,Total no of male and female from the above relation
-select gender, count(*) as total_MALE_female from student group by gender;
+--- removed the last query because it is providing wrong output , that's why i am commiting this code..
