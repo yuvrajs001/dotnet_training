@@ -71,17 +71,13 @@ namespace Assignment5
                     throw new IndexOutOfRangeException("Index is out of range.");
             }
         }
-
         // Total  number of books in the collection
         public int Count
         {
             get { return books.Count; }
         }
+
     }
-
-
-
-
 
 
     // now creating the BookShelf to store the data and display the same using indexer
@@ -101,9 +97,7 @@ namespace Assignment5
             for (int i = 0; i < Collection.Count; i++)
             {
                 Collection[i].Display();
-            }
-
-            
+            }  
 
         }
     }

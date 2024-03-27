@@ -68,6 +68,7 @@ namespace Assignment5
             Console.WriteLine("\nEmployee Details:");
             Employee emp = Employee.GetUserInput();
 
+
             emp.DisplayDetails();
             pte.DisplayDetails();
 
