@@ -55,20 +55,40 @@ Select * from EMP where HireDate >= DATEADD(YEAR, -5, GETDATE());
  Sal decimal(10, 2),
  Doj date
 );
+create table DeletedEmployee (  ---creating table temporary
+    Empno int primary key,
+    Ename varchar(20),
+    Sal decimal(10, 2),
+    Doj date
+);
 
 begin tran
+---a)
 insert into Employee (Empno, Ename, Sal, Doj)
-	values (1, 'Mayank', 6000.00, '2023-03-01'),
+	values (1, 'Mayank', 6000.00, '2023-03-01')
+	,
         (2, 'Ram', 10000.00, '2022-03-01'),
        (3, 'Megha', 5500.00, '2023-01-01');
---b. Update the second row sal with 15% increment  
-update Employee set Sal = Sal * 1.15 where Empno = 2;
---Delete the first row
-delete Employee where Empno = 1;
-commit tran
-select *from Employee
--------------------now recall the deleted tran
 
+--b. Update the second row sal with 15% increment  
+update Employee set Sal = sal*1.15  where Empno = 2;
+--Delete the first row
+delete from Employee where Empno = 1;
+
+insert into DeletedEmployee                
+select * from Employee where Empno = 1;--IT WILL insert the data into the temporary table so we can access again
+
+commit tran
+select * from Employee
+
+-------------------now recall the deleted tran
+insert into Employee
+select * from DeletedEmployee;
+
+--Drop the temporary table         
+drop table DeletedEmployee;
+-- verify the result
+select * from Employee;
 
 ----------------------------------------------------------------------------------------------------------------------
 --5.      Create a user defined function calculate Bonus for all employees of a  given job using 	following conditions
