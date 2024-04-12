@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CodeChallangeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Employee_Details">
+          <Key>
+            <PropertyRef Name="Empno" />
+          </Key>
+          <Property Name="Empno" Type="int" Nullable="false" />
+          <Property Name="EmpName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Empsal" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="Emptype" Type="char" MaxLength="1" />
+        </EntityType>
+        <Function Name="AddEmployeeDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmpName" Type="varchar" Mode="In" />
+          <Parameter Name="Empsal" Type="numeric" Mode="In" />
+          <Parameter Name="EmpType" Type="char" Mode="In" />
+        </Function>
+        <Function Name="ShowAllEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ShowAllEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="CodeChallangeModelStoreContainer">
+          <EntitySet Name="Employee_Details" EntityType="Self.Employee_Details" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CodeChallangeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Employee_Details">
+          <Key>
+            <PropertyRef Name="Empno" />
+          </Key>
+          <Property Name="Empno" Type="Int32" Nullable="false" />
+          <Property Name="EmpName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Empsal" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Emptype" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="CodeChallangeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Employee_Details" EntityType="Self.Employee_Details" />
+          <FunctionImport Name="AddEmployeeDetails">
+            <Parameter Name="EmpName" Mode="In" Type="String" />
+            <Parameter Name="Empsal" Mode="In" Type="Decimal" />
+            <Parameter Name="EmpType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ShowAllEmployees" ReturnType="Collection(CodeChallangeModel.ShowAllEmployees_Result)" />
+          <FunctionImport Name="ShowAllEmployee" ReturnType="Collection(CodeChallangeModel.ShowAllEmployee_Result)" />
+        </EntityContainer>
+        <ComplexType Name="ShowAllEmployees_Result">
+          <Property Type="Int32" Name="Empno" Nullable="false" />
+          <Property Type="String" Name="EmpName" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="Empsal" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="String" Name="Emptype" Nullable="true" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="ShowAllEmployee_Result">
+          <Property Type="Int32" Name="Empno" Nullable="false" />
+          <Property Type="String" Name="EmpName" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="Empsal" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="String" Name="Emptype" Nullable="true" MaxLength="1" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CodeChallangeModelStoreContainer" CdmEntityContainer="CodeChallangeEntities">
+          <EntitySetMapping Name="Employee_Details">
+            <EntityTypeMapping TypeName="CodeChallangeModel.Employee_Details">
+              <MappingFragment StoreEntitySet="Employee_Details">
+                <ScalarProperty Name="Empno" ColumnName="Empno" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="Empsal" ColumnName="Empsal" />
+                <ScalarProperty Name="Emptype" ColumnName="Emptype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddEmployeeDetails" FunctionName="CodeChallangeModel.Store.AddEmployeeDetails" />
+          <FunctionImportMapping FunctionImportName="ShowAllEmployees" FunctionName="CodeChallangeModel.Store.ShowAllEmployees">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CodeChallangeModel.ShowAllEmployees_Result">
+                <ScalarProperty Name="Empno" ColumnName="Empno" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="Empsal" ColumnName="Empsal" />
+                <ScalarProperty Name="Emptype" ColumnName="Emptype" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ShowAllEmployee" FunctionName="CodeChallangeModel.Store.ShowAllEmployee">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CodeChallangeModel.ShowAllEmployee_Result">
+                <ScalarProperty Name="Empno" ColumnName="Empno" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="Empsal" ColumnName="Empsal" />
+                <ScalarProperty Name="Emptype" ColumnName="Emptype" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

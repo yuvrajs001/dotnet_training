@@ -1,0 +1,12 @@
+D:\Yuvraj_repo\Assessments_code\Assessment_Ado\codeChallangeADo\codeChallangeADo\bin\Debug\codeChallangeADo.exe.config
+D:\Yuvraj_repo\Assessments_code\Assessment_Ado\codeChallangeADo\codeChallangeADo\bin\Debug\codeChallangeADo.exe
+D:\Yuvraj_repo\Assessments_code\Assessment_Ado\codeChallangeADo\codeChallangeADo\bin\Debug\codeChallangeADo.pdb
+D:\Yuvraj_repo\Assessments_code\Assessment_Ado\codeChallangeADo\codeChallangeADo\bin\Debug\EntityFramework.dll
+D:\Yuvraj_repo\Assessments_code\Assessment_Ado\codeChallangeADo\codeChallangeADo\bin\Debug\EntityFramework.SqlServer.dll
+D:\Yuvraj_repo\Assessments_code\Assessment_Ado\codeChallangeADo\codeChallangeADo\bin\Debug\EntityFramework.xml
+D:\Yuvraj_repo\Assessments_code\Assessment_Ado\codeChallangeADo\codeChallangeADo\bin\Debug\EntityFramework.SqlServer.xml
+D:\Yuvraj_repo\Assessments_code\Assessment_Ado\codeChallangeADo\codeChallangeADo\obj\Debug\codeChallangeADo.csproj.AssemblyReference.cache
+D:\Yuvraj_repo\Assessments_code\Assessment_Ado\codeChallangeADo\codeChallangeADo\obj\Debug\codeChallangeADo.csproj.CoreCompileInputs.cache
+D:\Yuvraj_repo\Assessments_code\Assessment_Ado\codeChallangeADo\codeChallangeADo\obj\Debug\codeChallangeADo.csproj.CopyComplete
+D:\Yuvraj_repo\Assessments_code\Assessment_Ado\codeChallangeADo\codeChallangeADo\obj\Debug\codeChallangeADo.exe
+D:\Yuvraj_repo\Assessments_code\Assessment_Ado\codeChallangeADo\codeChallangeADo\obj\Debug\codeChallangeADo.pdb

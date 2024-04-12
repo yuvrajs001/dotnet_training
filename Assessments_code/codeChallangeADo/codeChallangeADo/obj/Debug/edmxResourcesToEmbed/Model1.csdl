@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CodeChallangeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Employee_Details">
+    <Key>
+      <PropertyRef Name="Empno" />
+    </Key>
+    <Property Name="Empno" Type="Int32" Nullable="false" />
+    <Property Name="EmpName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Empsal" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Emptype" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="CodeChallangeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Employee_Details" EntityType="Self.Employee_Details" />
+    <FunctionImport Name="AddEmployeeDetails">
+      <Parameter Name="EmpName" Mode="In" Type="String" />
+      <Parameter Name="Empsal" Mode="In" Type="Decimal" />
+      <Parameter Name="EmpType" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ShowAllEmployees" ReturnType="Collection(CodeChallangeModel.ShowAllEmployees_Result)" />
+    <FunctionImport Name="ShowAllEmployee" ReturnType="Collection(CodeChallangeModel.ShowAllEmployee_Result)" />
+  </EntityContainer>
+  <ComplexType Name="ShowAllEmployees_Result">
+    <Property Type="Int32" Name="Empno" Nullable="false" />
+    <Property Type="String" Name="EmpName" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="Empsal" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="String" Name="Emptype" Nullable="true" MaxLength="1" />
+  </ComplexType>
+  <ComplexType Name="ShowAllEmployee_Result">
+    <Property Type="Int32" Name="Empno" Nullable="false" />
+    <Property Type="String" Name="EmpName" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="Empsal" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="String" Name="Emptype" Nullable="true" MaxLength="1" />
+  </ComplexType>
+</Schema>

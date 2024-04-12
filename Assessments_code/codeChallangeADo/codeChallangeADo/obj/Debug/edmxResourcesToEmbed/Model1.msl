@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CodeChallangeModelStoreContainer" CdmEntityContainer="CodeChallangeEntities">
+    <EntitySetMapping Name="Employee_Details">
+      <EntityTypeMapping TypeName="CodeChallangeModel.Employee_Details">
+        <MappingFragment StoreEntitySet="Employee_Details">
+          <ScalarProperty Name="Empno" ColumnName="Empno" />
+          <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+          <ScalarProperty Name="Empsal" ColumnName="Empsal" />
+          <ScalarProperty Name="Emptype" ColumnName="Emptype" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AddEmployeeDetails" FunctionName="CodeChallangeModel.Store.AddEmployeeDetails" />
+    <FunctionImportMapping FunctionImportName="ShowAllEmployees" FunctionName="CodeChallangeModel.Store.ShowAllEmployees">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CodeChallangeModel.ShowAllEmployees_Result">
+          <ScalarProperty Name="Empno" ColumnName="Empno" />
+          <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+          <ScalarProperty Name="Empsal" ColumnName="Empsal" />
+          <ScalarProperty Name="Emptype" ColumnName="Emptype" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ShowAllEmployee" FunctionName="CodeChallangeModel.Store.ShowAllEmployee">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CodeChallangeModel.ShowAllEmployee_Result">
+          <ScalarProperty Name="Empno" ColumnName="Empno" />
+          <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+          <ScalarProperty Name="Empsal" ColumnName="Empsal" />
+          <ScalarProperty Name="Emptype" ColumnName="Emptype" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
