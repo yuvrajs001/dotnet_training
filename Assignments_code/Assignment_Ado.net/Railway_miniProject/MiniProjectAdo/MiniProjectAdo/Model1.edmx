@@ -1,0 +1,592 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MiniProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="BookingID" />
+          </Key>
+          <Property Name="TrainID" Type="int" />
+          <Property Name="berthType" Type="varchar" MaxLength="50" />
+          <Property Name="Totaltickets" Type="int" />
+          <Property Name="BookingStatus" Type="char" MaxLength="1" />
+          <Property Name="payment_amount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="BookingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CancelTicket">
+          <Key>
+            <PropertyRef Name="CancelTicketID" />
+          </Key>
+          <Property Name="CancelTicketID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookingID" Type="int" />
+          <Property Name="RefundAmount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="CancelDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="train">
+          <Key>
+            <PropertyRef Name="trainID" />
+          </Key>
+          <Property Name="trainID" Type="int" Nullable="false" />
+          <Property Name="trainName" Type="varchar" MaxLength="50" />
+          <Property Name="Source" Type="varchar" MaxLength="50" />
+          <Property Name="Destination" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="TrainBerthInfo">
+          <Key>
+            <PropertyRef Name="TrainBirthID" />
+          </Key>
+          <Property Name="TrainID" Type="int" />
+          <Property Name="BerthClass" Type="varchar" MaxLength="50" />
+          <Property Name="TotalSeats" Type="int" />
+          <Property Name="AvailableSeats" Type="int" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="TrainBirthID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserPer">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Booking__TrainID__412EB0B6">
+          <End Role="train" Type="Self.train" Multiplicity="0..1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="train">
+              <PropertyRef Name="trainID" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="TrainID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CancelTic__Booki__7D439ABD">
+          <End Role="Booking" Type="Self.Booking" Multiplicity="0..1" />
+          <End Role="CancelTicket" Type="Self.CancelTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Booking">
+              <PropertyRef Name="BookingID" />
+            </Principal>
+            <Dependent Role="CancelTicket">
+              <PropertyRef Name="BookingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TrainBert__Train__3D5E1FD2">
+          <End Role="train" Type="Self.train" Multiplicity="0..1" />
+          <End Role="TrainBerthInfo" Type="Self.TrainBerthInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="train">
+              <PropertyRef Name="trainID" />
+            </Principal>
+            <Dependent Role="TrainBerthInfo">
+              <PropertyRef Name="TrainID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AddTrain" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TrainID" Type="int" Mode="In" />
+          <Parameter Name="TrainName" Type="varchar" Mode="In" />
+          <Parameter Name="Source" Type="varchar" Mode="In" />
+          <Parameter Name="Destination" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="AddTrainBerthInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TrainID" Type="int" Mode="In" />
+          <Parameter Name="BerthClass" Type="varchar" Mode="In" />
+          <Parameter Name="TotalSeats" Type="int" Mode="In" />
+          <Parameter Name="AvailableSeats" Type="int" Mode="In" />
+          <Parameter Name="Price" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="BookTrainTicket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+          <Parameter Name="TrainID" Type="int" Mode="In" />
+          <Parameter Name="BerthClass" Type="varchar" Mode="In" />
+          <Parameter Name="TotalTickets" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CancelTicketData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BookingID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ChangeTrainStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TrainID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetActiveTrains" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetBirthDetal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TrainID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetLastBookingID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ModifyTrain" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TrainID" Type="int" Mode="In" />
+          <Parameter Name="TrainName" Type="varchar" Mode="In" />
+          <Parameter Name="Source" Type="varchar" Mode="In" />
+          <Parameter Name="Destination" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Printticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BookingID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ShowAllTrain" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ShowAllTrains" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SoftDeleteTrain" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TrainID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdateTrain" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TrainID" Type="int" Mode="In" />
+          <Parameter Name="TrainName" Type="varchar" Mode="In" />
+          <Parameter Name="Source" Type="varchar" Mode="In" />
+          <Parameter Name="Destination" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ViewTrain" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TrainID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ViewTrainStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TrainID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="MiniProjectModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CancelTicket" EntityType="Self.CancelTicket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="train" EntityType="Self.train" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrainBerthInfo" EntityType="Self.TrainBerthInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserPer" EntityType="Self.UserPer" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Booking__TrainID__412EB0B6" Association="Self.FK__Booking__TrainID__412EB0B6">
+            <End Role="train" EntitySet="train" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CancelTic__Booki__7D439ABD" Association="Self.FK__CancelTic__Booki__7D439ABD">
+            <End Role="Booking" EntitySet="Booking" />
+            <End Role="CancelTicket" EntitySet="CancelTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TrainBert__Train__3D5E1FD2" Association="Self.FK__TrainBert__Train__3D5E1FD2">
+            <End Role="train" EntitySet="train" />
+            <End Role="TrainBerthInfo" EntitySet="TrainBerthInfo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MiniProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="BookingID" />
+          </Key>
+          <Property Name="TrainID" Type="Int32" />
+          <Property Name="berthType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Totaltickets" Type="Int32" />
+          <Property Name="BookingStatus" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="payment_amount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="BookingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="train" Relationship="Self.FK__Booking__TrainID__412EB0B6" FromRole="Booking" ToRole="train" />
+          <NavigationProperty Name="CancelTickets" Relationship="MiniProjectModel.FK__CancelTic__Booki__7D439ABD" FromRole="Booking" ToRole="CancelTicket" />
+        </EntityType>
+        <EntityType Name="train">
+          <Key>
+            <PropertyRef Name="trainID" />
+          </Key>
+          <Property Name="trainID" Type="Int32" Nullable="false" />
+          <Property Name="trainName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Source" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Destination" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK__Booking__TrainID__412EB0B6" FromRole="train" ToRole="Booking" />
+          <NavigationProperty Name="TrainBerthInfoes" Relationship="Self.FK__TrainBert__Train__3D5E1FD2" FromRole="train" ToRole="TrainBerthInfo" />
+        </EntityType>
+        <EntityType Name="TrainBerthInfo">
+          <Key>
+            <PropertyRef Name="TrainBirthID" />
+          </Key>
+          <Property Name="TrainID" Type="Int32" />
+          <Property Name="BerthClass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TotalSeats" Type="Int32" />
+          <Property Name="AvailableSeats" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="TrainBirthID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="train" Relationship="Self.FK__TrainBert__Train__3D5E1FD2" FromRole="TrainBerthInfo" ToRole="train" />
+        </EntityType>
+        <EntityType Name="UserPer">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__Booking__TrainID__412EB0B6">
+          <End Role="train" Type="Self.train" Multiplicity="0..1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="train">
+              <PropertyRef Name="trainID" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="TrainID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TrainBert__Train__3D5E1FD2">
+          <End Role="train" Type="Self.train" Multiplicity="0..1" />
+          <End Role="TrainBerthInfo" Type="Self.TrainBerthInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="train">
+              <PropertyRef Name="trainID" />
+            </Principal>
+            <Dependent Role="TrainBerthInfo">
+              <PropertyRef Name="TrainID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MiniProjectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Bookings" EntityType="Self.Booking" />
+          <EntitySet Name="trains" EntityType="Self.train" />
+          <EntitySet Name="TrainBerthInfoes" EntityType="Self.TrainBerthInfo" />
+          <EntitySet Name="UserPers" EntityType="Self.UserPer" />
+          <AssociationSet Name="FK__Booking__TrainID__412EB0B6" Association="Self.FK__Booking__TrainID__412EB0B6">
+            <End Role="train" EntitySet="trains" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TrainBert__Train__3D5E1FD2" Association="Self.FK__TrainBert__Train__3D5E1FD2">
+            <End Role="train" EntitySet="trains" />
+            <End Role="TrainBerthInfo" EntitySet="TrainBerthInfoes" />
+          </AssociationSet>
+          <FunctionImport Name="AddTrain">
+            <Parameter Name="TrainID" Mode="In" Type="Int32" />
+            <Parameter Name="TrainName" Mode="In" Type="String" />
+            <Parameter Name="Source" Mode="In" Type="String" />
+            <Parameter Name="Destination" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddTrainBerthInfo">
+            <Parameter Name="TrainID" Mode="In" Type="Int32" />
+            <Parameter Name="BerthClass" Mode="In" Type="String" />
+            <Parameter Name="TotalSeats" Mode="In" Type="Int32" />
+            <Parameter Name="AvailableSeats" Mode="In" Type="Int32" />
+            <Parameter Name="Price" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="ChangeTrainStatus">
+          <Parameter Name="TrainID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetActiveTrains" ReturnType="Collection(MiniProjectModel.GetActiveTrains_Result)" />
+          <FunctionImport Name="GetBirthDetal" ReturnType="Collection(MiniProjectModel.GetBirthDetal_Result)">
+          <Parameter Name="TrainID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ModifyTrain">
+            <Parameter Name="TrainID" Mode="In" Type="Int32" />
+            <Parameter Name="TrainName" Mode="In" Type="String" />
+            <Parameter Name="Source" Mode="In" Type="String" />
+            <Parameter Name="Destination" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ShowAllTrain" ReturnType="Collection(MiniProjectModel.ShowAllTrain_Result)" />
+          <FunctionImport Name="ShowAllTrains" ReturnType="Collection(MiniProjectModel.ShowAllTrains_Result)" />
+          <FunctionImport Name="SoftDeleteTrain">
+          <Parameter Name="TrainID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateTrain">
+            <Parameter Name="TrainID" Mode="In" Type="Int32" />
+            <Parameter Name="TrainName" Mode="In" Type="String" />
+            <Parameter Name="Source" Mode="In" Type="String" />
+            <Parameter Name="Destination" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ViewTrain" ReturnType="Collection(MiniProjectModel.ViewTrain_Result)">
+          <Parameter Name="TrainID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ViewTrainStatus" ReturnType="Collection(MiniProjectModel.ViewTrainStatus_Result)">
+          <Parameter Name="TrainID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="BookTrainTicket">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="TrainID" Mode="In" Type="Int32" />
+            <Parameter Name="BerthClass" Mode="In" Type="String" />
+            <Parameter Name="TotalTickets" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Printticket" ReturnType="Collection(MiniProjectModel.Printticket_Result)">
+          <Parameter Name="BookingID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetLastBookingID" ReturnType="Collection(Int32)" />
+          <EntitySet Name="CancelTickets" EntityType="MiniProjectModel.CancelTicket" />
+          <AssociationSet Name="FK__CancelTic__Booki__7D439ABD" Association="MiniProjectModel.FK__CancelTic__Booki__7D439ABD">
+            <End Role="Booking" EntitySet="Bookings" />
+            <End Role="CancelTicket" EntitySet="CancelTickets" />
+          </AssociationSet>
+          <FunctionImport Name="CancelTicketData">
+          <Parameter Name="BookingID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetActiveTrains_Result">
+          <Property Type="Int32" Name="trainID" Nullable="false" />
+          <Property Type="String" Name="trainName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Source" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Destination" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="GetBirthDetal_Result">
+          <Property Type="Int32" Name="TrainID" Nullable="true" />
+          <Property Type="String" Name="BerthClass" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="TotalSeats" Nullable="true" />
+          <Property Type="Int32" Name="AvailableSeats" Nullable="true" />
+          <Property Type="Decimal" Name="price" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="TrainBirthID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ShowAllTrain_Result">
+          <Property Type="Int32" Name="trainID" Nullable="false" />
+          <Property Type="String" Name="trainName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Source" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Destination" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="ShowAllTrains_Result">
+          <Property Type="Int32" Name="trainID" Nullable="false" />
+          <Property Type="String" Name="trainName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Source" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Destination" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="ViewTrain_Result">
+          <Property Type="Int32" Name="trainID" Nullable="false" />
+          <Property Type="String" Name="trainName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Source" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Destination" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="ViewTrainStatus_Result">
+          <Property Type="Int32" Name="trainID" Nullable="false" />
+          <Property Type="String" Name="trainName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Source" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Destination" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="Printticket_Result">
+          <Property Type="Int32" Name="TrainID" Nullable="true" />
+          <Property Type="String" Name="berthType" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Totaltickets" Nullable="true" />
+          <Property Type="String" Name="BookingStatus" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="payment_amount" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="BookingID" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="CancelTicket">
+          <Key>
+            <PropertyRef Name="CancelTicketID" />
+          </Key>
+          <Property Name="CancelTicketID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookingID" Type="Int32" />
+          <Property Name="RefundAmount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="CancelDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Booking" Relationship="MiniProjectModel.FK__CancelTic__Booki__7D439ABD" FromRole="CancelTicket" ToRole="Booking" />
+        </EntityType>
+        <Association Name="FK__CancelTic__Booki__7D439ABD">
+          <End Type="MiniProjectModel.Booking" Role="Booking" Multiplicity="0..1" />
+          <End Type="MiniProjectModel.CancelTicket" Role="CancelTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Booking">
+              <PropertyRef Name="BookingID" />
+            </Principal>
+            <Dependent Role="CancelTicket">
+              <PropertyRef Name="BookingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MiniProjectModelStoreContainer" CdmEntityContainer="MiniProjectEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="MiniProjectModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bookings">
+            <EntityTypeMapping TypeName="MiniProjectModel.Booking">
+              <MappingFragment StoreEntitySet="Booking">
+                <ScalarProperty Name="TrainID" ColumnName="TrainID" />
+                <ScalarProperty Name="berthType" ColumnName="berthType" />
+                <ScalarProperty Name="Totaltickets" ColumnName="Totaltickets" />
+                <ScalarProperty Name="BookingStatus" ColumnName="BookingStatus" />
+                <ScalarProperty Name="payment_amount" ColumnName="payment_amount" />
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trains">
+            <EntityTypeMapping TypeName="MiniProjectModel.train">
+              <MappingFragment StoreEntitySet="train">
+                <ScalarProperty Name="trainID" ColumnName="trainID" />
+                <ScalarProperty Name="trainName" ColumnName="trainName" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrainBerthInfoes">
+            <EntityTypeMapping TypeName="MiniProjectModel.TrainBerthInfo">
+              <MappingFragment StoreEntitySet="TrainBerthInfo">
+                <ScalarProperty Name="TrainID" ColumnName="TrainID" />
+                <ScalarProperty Name="BerthClass" ColumnName="BerthClass" />
+                <ScalarProperty Name="TotalSeats" ColumnName="TotalSeats" />
+                <ScalarProperty Name="AvailableSeats" ColumnName="AvailableSeats" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="TrainBirthID" ColumnName="TrainBirthID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPers">
+            <EntityTypeMapping TypeName="MiniProjectModel.UserPer">
+              <MappingFragment StoreEntitySet="UserPer">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddTrain" FunctionName="MiniProjectModel.Store.AddTrain" />
+          <FunctionImportMapping FunctionImportName="AddTrainBerthInfo" FunctionName="MiniProjectModel.Store.AddTrainBerthInfo" />
+          <FunctionImportMapping FunctionImportName="ChangeTrainStatus" FunctionName="MiniProjectModel.Store.ChangeTrainStatus" />
+          <FunctionImportMapping FunctionImportName="GetActiveTrains" FunctionName="MiniProjectModel.Store.GetActiveTrains">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiniProjectModel.GetActiveTrains_Result">
+                <ScalarProperty Name="trainID" ColumnName="trainID" />
+                <ScalarProperty Name="trainName" ColumnName="trainName" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetBirthDetal" FunctionName="MiniProjectModel.Store.GetBirthDetal">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiniProjectModel.GetBirthDetal_Result">
+                <ScalarProperty Name="TrainID" ColumnName="TrainID" />
+                <ScalarProperty Name="BerthClass" ColumnName="BerthClass" />
+                <ScalarProperty Name="TotalSeats" ColumnName="TotalSeats" />
+                <ScalarProperty Name="AvailableSeats" ColumnName="AvailableSeats" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="TrainBirthID" ColumnName="TrainBirthID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ModifyTrain" FunctionName="MiniProjectModel.Store.ModifyTrain" />
+          <FunctionImportMapping FunctionImportName="ShowAllTrain" FunctionName="MiniProjectModel.Store.ShowAllTrain">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiniProjectModel.ShowAllTrain_Result">
+                <ScalarProperty Name="trainID" ColumnName="trainID" />
+                <ScalarProperty Name="trainName" ColumnName="trainName" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ShowAllTrains" FunctionName="MiniProjectModel.Store.ShowAllTrains">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiniProjectModel.ShowAllTrains_Result">
+                <ScalarProperty Name="trainID" ColumnName="trainID" />
+                <ScalarProperty Name="trainName" ColumnName="trainName" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SoftDeleteTrain" FunctionName="MiniProjectModel.Store.SoftDeleteTrain" />
+          <FunctionImportMapping FunctionImportName="UpdateTrain" FunctionName="MiniProjectModel.Store.UpdateTrain" />
+          <FunctionImportMapping FunctionImportName="ViewTrain" FunctionName="MiniProjectModel.Store.ViewTrain">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiniProjectModel.ViewTrain_Result">
+                <ScalarProperty Name="trainID" ColumnName="trainID" />
+                <ScalarProperty Name="trainName" ColumnName="trainName" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ViewTrainStatus" FunctionName="MiniProjectModel.Store.ViewTrainStatus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiniProjectModel.ViewTrainStatus_Result">
+                <ScalarProperty Name="trainID" ColumnName="trainID" />
+                <ScalarProperty Name="trainName" ColumnName="trainName" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BookTrainTicket" FunctionName="MiniProjectModel.Store.BookTrainTicket" />
+          <FunctionImportMapping FunctionImportName="Printticket" FunctionName="MiniProjectModel.Store.Printticket">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiniProjectModel.Printticket_Result">
+                <ScalarProperty Name="TrainID" ColumnName="TrainID" />
+                <ScalarProperty Name="berthType" ColumnName="berthType" />
+                <ScalarProperty Name="Totaltickets" ColumnName="Totaltickets" />
+                <ScalarProperty Name="BookingStatus" ColumnName="BookingStatus" />
+                <ScalarProperty Name="payment_amount" ColumnName="payment_amount" />
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetLastBookingID" FunctionName="MiniProjectModel.Store.GetLastBookingID" />
+          <EntitySetMapping Name="CancelTickets">
+            <EntityTypeMapping TypeName="MiniProjectModel.CancelTicket">
+              <MappingFragment StoreEntitySet="CancelTicket">
+                <ScalarProperty Name="CancelDate" ColumnName="CancelDate" />
+                <ScalarProperty Name="RefundAmount" ColumnName="RefundAmount" />
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+                <ScalarProperty Name="CancelTicketID" ColumnName="CancelTicketID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CancelTicketData" FunctionName="MiniProjectModel.Store.CancelTicketData" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
